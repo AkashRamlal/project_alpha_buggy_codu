@@ -1,10 +1,30 @@
-﻿Console.WriteLine("Dit is een test.");
-Console.WriteLine("Test 2");
-
-int i = 0;
-
-while(i < 11)
+﻿class Program
 {
-    Console.WriteLine(i);
-    i++;
+    static void Main(string[] args)
+    {
+        if (currentLocation.QuestAvailableHere != null)
+        {
+            Quest quest = currentLocation.QuestAvailableHere;
+            Console.WriteLine($"Quest available: {quest.Name}");
+            Console.WriteLine(quest.Description);
+            Console.WriteLine("Do you want to accept the quest? (y/n)");
+
+            string input = Console.ReadLine();
+
+            if(input.ToLower() == "y")
+            {
+                player.Quests.Add(currentLocation.QuestAvailableHere);
+                Console.WriteLine($"You have accepted the quest: {quest.Name}");
+            }
+            else
+            {
+                Console.WriteLine("You have declined the quest.");
+                // add logic that the player can go back to the previous location.
+            }
+        }
+        else
+        {
+            Console.WriteLine("Quest A is not available.");
+        }
+    }
 }
