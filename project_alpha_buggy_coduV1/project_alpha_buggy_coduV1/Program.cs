@@ -24,7 +24,7 @@
         }
         else
         {
-            Console.WriteLine("Quest A is not available.");
+            Console.WriteLine("Quest is not available.");
         }
     }
 }
