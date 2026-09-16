@@ -165,7 +165,7 @@ public static class World
             }
         }
 
-        return null;
+        return null!;
     }
 
     public static Weapon WeaponByID(int id)
@@ -178,7 +178,7 @@ public static class World
             }
         }
 
-        return null;
+        return null!;
     }
 
 
@@ -193,7 +193,7 @@ public static class World
             }
         }
 
-        return null;
+        return null!;
     }
 
     public static Quest QuestByID(int id)
@@ -206,6 +206,6 @@ public static class World
             }
         }
 
-        return null;
+        return null!;
     }
 }
