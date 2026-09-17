@@ -5,6 +5,8 @@ public class Player
     public int MaximumHitPoints { get; set; }
     public Weapon? CurrentWeapon { get; set; }
     public Location CurrentLocation { get; set; }
+    public Quest? CurrentQuest { get; set; }
+    public List<Quest> CompletedQuests { get; set; } = new List<Quest>();
 
     public Player(string name, int currentHitPoints, int maximumHitPoints, Location currentLocation, Weapon? currentWeapon = null)
     {
