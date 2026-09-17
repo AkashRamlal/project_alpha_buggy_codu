@@ -1,0 +1,7 @@
+{
+    "python.testing.pytestArgs": [
+        "project_alpha_buggy_coduV1"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true
+}
