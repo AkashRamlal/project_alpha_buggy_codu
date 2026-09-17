@@ -15,6 +15,9 @@ public static class World
     public const int MONSTER_ID_RAT = 1;
     public const int MONSTER_ID_SNAKE = 2;
     public const int MONSTER_ID_GIANT_SPIDER = 3;
+    public const int WEAPON_ID_ALCHEMISTS_DAGGER = 3;
+    public const int WEAPON_ID_FARMERS_PITCHFORK = 4;
+    public const int WEAPON_ID_SPIDERSILK_BLADE = 5;
 
     public const int QUEST_ID_CLEAR_ALCHEMIST_GARDEN = 1;
     public const int QUEST_ID_CLEAR_FARMERS_FIELD = 2;
@@ -43,6 +46,9 @@ public static class World
     {
         Weapons.Add(new Weapon(WEAPON_ID_RUSTY_SWORD, "Rusty sword", 5));
         Weapons.Add(new Weapon(WEAPON_ID_CLUB, "Club", 10));
+        Weapons.Add(new Weapon(WEAPON_ID_ALCHEMISTS_DAGGER, "Alchemist's dagger", 8));
+        Weapons.Add(new Weapon(WEAPON_ID_FARMERS_PITCHFORK, "Farmer's pitchfork", 10));
+        Weapons.Add(new Weapon(WEAPON_ID_SPIDERSILK_BLADE, "Spidersilk blade", 12));
     }
 
     public static void PopulateMonsters()
@@ -67,7 +73,9 @@ public static class World
             new Quest(
                 QUEST_ID_CLEAR_ALCHEMIST_GARDEN,
                 "Clear the alchemist's garden",
-                "Kill rats in the alchemist's garden ");
+                "Kill rats in the alchemist's garden",
+                MONSTER_ID_RAT,
+                WeaponByID(WEAPON_ID_ALCHEMISTS_DAGGER));
 
 
 
@@ -75,14 +83,18 @@ public static class World
             new Quest(
                 QUEST_ID_CLEAR_FARMERS_FIELD,
                 "Clear the farmer's field",
-                "Kill snakes in the farmer's field");
+                "Kill snakes in the farmer's field",
+                MONSTER_ID_SNAKE,
+                WeaponByID(WEAPON_ID_FARMERS_PITCHFORK));
 
 
         Quest clearSpidersForest =
                     new Quest(
                         QUEST_ID_COLLECT_SPIDER_SILK,
                         "Collect spider silk",
-                        "Kill spiders in the spider forest");
+                        "Kill spiders in the spider forest",
+                        MONSTER_ID_GIANT_SPIDER,
+                        WeaponByID(WEAPON_ID_SPIDERSILK_BLADE));
 
 
         Quests.Add(clearAlchemistGarden);
