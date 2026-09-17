@@ -30,7 +30,25 @@
                 case "EnterBattle":
                     Monster monsterToUse = (Monster)actionToPerform.Item2;
 
-                    Battle.Start(player, monsterToUse);
+                    bool battleWon = Battle.Start(player, monsterToUse);
+
+                    if (battleWon && player.CurrentQuest != null && player.CurrentQuest.RequiredMonsterID == monsterToUse.ID)
+                    {
+                        Quest completedQuest = player.CurrentQuest;
+
+                        player.CompletedQuests.Add(completedQuest);
+                        player.CurrentQuest = null;
+
+                        Console.WriteLine();
+                        Console.WriteLine($"Quest complete: {completedQuest.Name}!");
+
+                        if (completedQuest.Reward != null)
+                        {
+                            player.CurrentWeapon = completedQuest.Reward;
+                            Console.WriteLine($"You received a reward: {completedQuest.Reward.Name} ({completedQuest.Reward.MaximumDamage} max damage)!");
+                            Console.WriteLine($"You have equipped the {completedQuest.Reward.Name}.");
+                        }
+                    }
 
                     break;
 

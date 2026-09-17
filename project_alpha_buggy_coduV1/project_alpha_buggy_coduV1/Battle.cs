@@ -1,6 +1,6 @@
 public static class Battle
 {
-    public static void Start(Player player, Monster monster)
+    public static bool Start(Player player, Monster monster)
     {
         int monstersDefeated = 0;
 
@@ -23,7 +23,7 @@ public static class Battle
             if (input == "e")
             {
                 Console.WriteLine("You escaped from the battle!");
-                return;
+                return false;
             }
 
             // Only ENTER starts the fight
@@ -89,7 +89,7 @@ public static class Battle
                 if (player.CurrentHitPoints <= 0)
                 {
                     Console.WriteLine("You died!");
-                    return;
+                    return false;
                 }
             }
 
@@ -101,7 +101,7 @@ public static class Battle
                     $"You defeated all 3 {monster.Name}s!"
                 );
 
-                return;
+                return true;
             }
 
             Console.WriteLine();
@@ -110,5 +110,7 @@ public static class Battle
                 "or E to escape."
             );
         }
+
+        return false;
     }
 }
