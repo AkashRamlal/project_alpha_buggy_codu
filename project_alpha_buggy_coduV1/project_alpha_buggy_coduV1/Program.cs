@@ -5,13 +5,19 @@
         bool gameIsRunning = true;
         Location startingLocation = World.Locations[0];
 
+        Console.WriteLine("Enter your Hero's name:");
+        string  input1 = Console.ReadLine() ?? "Hero";
+
         Player player = new Player(
-            "AAA",
             200,
             200,
             startingLocation,
             World.WeaponByID(World.WEAPON_ID_RUSTY_SWORD)
         );
+
+        input1 = input1?.Trim() ?? "Hero";
+        Console.WriteLine($"Welcome, {input1}!");
+        player.Name = input1;
 
         while (gameIsRunning)
         {
@@ -51,7 +57,7 @@
                     }
 
                     break;
-
+                // Accept the quest if available and start a battle if there's a monster in the location
                 case "TakeQuest":
                     if (player.CurrentQuest != null)
                     {
@@ -73,6 +79,12 @@
                         {
                             player.CurrentQuest = quest;
                             Console.WriteLine($"You have accepted the quest: {quest.Name}");
+
+                            // Start a battle if there's a monster in the location
+                            if (player.CurrentLocation.MonsterLivingHere != null)
+                            {
+                                Battle.Start(player, player.CurrentLocation.MonsterLivingHere);
+                            }
                         }
                         else
                         {

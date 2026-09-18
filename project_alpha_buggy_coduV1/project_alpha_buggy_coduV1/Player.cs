@@ -8,9 +8,8 @@ public class Player
     public Quest? CurrentQuest { get; set; }
     public List<Quest> CompletedQuests { get; set; } = new List<Quest>();
 
-    public Player(string name, int currentHitPoints, int maximumHitPoints, Location currentLocation, Weapon? currentWeapon = null)
+    public Player(int currentHitPoints, int maximumHitPoints, Location currentLocation, Weapon? currentWeapon = null)
     {
-        Name = name;
         CurrentHitPoints = currentHitPoints;
         MaximumHitPoints = maximumHitPoints;
         CurrentWeapon = currentWeapon;
