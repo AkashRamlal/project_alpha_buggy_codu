@@ -8,6 +8,7 @@
         Console.WriteLine("Enter your Hero's name:");
         string input1 = Console.ReadLine();
 
+        // If the user doesn't enter a name, default to "Hero"
         if (string.IsNullOrWhiteSpace(input1))
         {
             input1 = "Hero";
@@ -26,6 +27,16 @@
 
         Console.WriteLine($"Welcome, {input1}!");
         player.Name = input1;
+
+        Console.WriteLine();
+        Console.WriteLine(
+            $"Your name is {player.Name}. You live in a town called Riverbend.\n" +
+            "You always dreamed to be a hero. And now when you heard that your town is being terrorized by big spiders.\n" +
+            "You decided to do all you can to help your town.\n" +
+            "In a chest in your home there is a rusty sword that once your father fought with.\n" +
+            "You take it and from now on you swear to protect the people of your town."
+        );
+        Console.WriteLine();
 
         while (gameIsRunning)
         {

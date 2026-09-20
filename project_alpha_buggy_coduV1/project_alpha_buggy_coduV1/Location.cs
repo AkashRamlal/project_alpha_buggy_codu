@@ -21,7 +21,7 @@ public class Location
         Console.WriteLine($"You are at: {Name}");
         Console.WriteLine(Description);
         Console.WriteLine($"Your health is {player.CurrentHitPoints}/{player.MaximumHitPoints}");
-        Console.WriteLine("QuestProgPlaceholder");
+        //Console.WriteLine("QuestProgPlaceholder");
         //Collect all valid options for the current situation: take quest, fight, move, open inventory
         List<Tuple<String, int>> options = [];
         if (QuestAvailableHere != null)
@@ -30,8 +30,13 @@ public class Location
             options.Add(entry);}
         if (MonsterLivingHere != null)
         {
-            Tuple<String, int> entry = new Tuple<String, int> ($"Enter a battle against: {MonsterLivingHere.Name}.", 1);
-            options.Add(entry);}
+            //Only allow fighting if the player has a quest.
+            if (player.CurrentQuest != null)
+            {
+                Tuple<String, int> entry = new Tuple<String, int>($"Enter a battle against: {MonsterLivingHere.Name}.", 1);
+                options.Add(entry);
+            }
+        }
         Tuple<String, int> invEntry = new Tuple<String, int> ("Open inventory.", 2);
         options.Add(invEntry);
         if (LocationToNorth != null)
