@@ -126,7 +126,7 @@ public static class World
         Location farmersField = new Location(LOCATION_ID_FARM_FIELD, "Farmer's field", "You see rows of vegetables growing here.", null, null);
         farmersField.MonsterLivingHere = MonsterByID(MONSTER_ID_SNAKE);
 
-        Location guardPost = new Location(LOCATION_ID_GUARD_POST, "Guard post", "There is a large, tough-looking guard here.", null, null);
+        Location guardPost = new Location(LOCATION_ID_GUARD_POST, "Guard post", "", null, null);
 
         Location bridge = new Location(LOCATION_ID_BRIDGE, "Bridge", "A stone bridge crosses a wide river.", null, null);
         bridge.QuestAvailableHere = QuestByID(QUEST_ID_COLLECT_SPIDER_SILK);
