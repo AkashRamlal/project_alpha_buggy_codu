@@ -18,6 +18,7 @@
             input1 = input1.Trim();
         }
 
+        // Create a new player with the provided name and starting location
         Player player = new Player(
             200,
             200,
@@ -46,7 +47,7 @@
             switch (actionToPerform.Item1)
             {
                 case "Travel":
-                    player.CurrentLocation = (Location)actionToPerform.Item2;
+                    player.MoveTo((Location)actionToPerform.Item2);
                     break;
 
                 case "OpenInventory":

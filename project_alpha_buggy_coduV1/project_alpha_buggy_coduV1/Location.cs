@@ -1,6 +1,4 @@
 using System.Linq.Expressions;
-
-
 public class Location
 {
     public int ID;
