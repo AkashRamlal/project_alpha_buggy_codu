@@ -5,6 +5,7 @@
         bool gameIsRunning = true;
         Location startingLocation = World.Locations[0];
 
+        //Welcome screen code here pls :D
         Console.WriteLine("Enter your Hero's name:");
         string input1 = Console.ReadLine();
 
@@ -95,6 +96,7 @@
 
                         string input = Console.ReadLine();
 
+                        // Check if the player accepts the quest
                         if (input.ToLower() == "y")
                         {
                             player.CurrentQuest = quest;
@@ -108,7 +110,19 @@
                         }
                         else
                         {
-                            Console.WriteLine("You have declined the quest.");
+                            Console.WriteLine("You are about to abort the Quest are you really not man enough to take it?");
+                            Console.WriteLine("yes / no");
+                            string choice_2 = Console.ReadLine().ToLower();
+
+                            if (choice_2 == "yes" || choice_2 == "y")
+                            {
+                                player.CurrentQuest = quest;
+                                Console.WriteLine($"Thats what we like to see you Quest start now. {player.CurrentQuest.Name}");
+                            }
+                            else
+                            {
+                                Console.WriteLine("You canceled the Quest chicken");
+                            }
                         }
                     }
                     else
