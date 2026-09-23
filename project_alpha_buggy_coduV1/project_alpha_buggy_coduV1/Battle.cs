@@ -82,6 +82,12 @@ public static class Battle
 
                 player.CurrentHitPoints -= monsterDamage;
 
+                // Prevent health from going below 0
+                if (player.CurrentHitPoints < 0)
+                {
+                    player.CurrentHitPoints = 0;
+                }
+
                 Console.WriteLine(
                     $"The {monster.Name} hits you " +
                     $"for {monsterDamage} damage."
@@ -96,8 +102,11 @@ public static class Battle
                 // Player died
                 if (player.CurrentHitPoints <= 0)
                 {
+                    Console.WriteLine();
                     Console.WriteLine("You died!");
-                    return false;
+                    Console.WriteLine("GAME OVER");
+
+                    Environment.Exit(0);
                 }
             }
 
