@@ -5,8 +5,8 @@
         bool gameIsRunning = true;
         Location startingLocation = World.Locations[0];
 
-        Console.WriteLine("Enter your Hero's name:");
-        string  input1 = Console.ReadLine() ?? "Hero";
+        string heroName = StartMenu.Show();
+
 
         Player player = new Player(
             200,
@@ -15,9 +15,11 @@
             World.WeaponByID(World.WEAPON_ID_RUSTY_SWORD)
         );
 
-        input1 = input1?.Trim() ?? "Hero";
-        Console.WriteLine($"Welcome, {input1}!");
-        player.Name = input1;
+        player.Name = heroName;
+        Console.WriteLine();
+        Console.WriteLine($"Good luck, {heroName}!");
+        Console.WriteLine();
+
 
         while (gameIsRunning)
         {
