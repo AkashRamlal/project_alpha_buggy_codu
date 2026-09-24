@@ -6,17 +6,46 @@
         Location startingLocation = World.Locations[0];
 
         //Welcome screen code here pls :D
-        Console.WriteLine("Enter your Hero's name:");
-        string input1 = Console.ReadLine();
+        Console.WriteLine(@"
+,--.   ,--.              ,--.   ,--.            ,---.     ,-----.                          ,--.
+|  |   |  | ,---. ,--.--.|  | ,-|  |     ,---. /  .-'    '  .-.  '  ,--.,--. ,---.  ,---.,-'  '-. ,---.
+|  |.'.|  || .-. ||  .--'|  |' .-. |    | .-. ||  `-,    |  | |  |  |  ||  || .-. :(  .-''-.  .-'(  .-'
+|   ,'.   |' '-' '|  |   |  |\ `-' |    ' '-' '|  .-'    '  '-'  '-.'  ''  '\   --..-'  `) |  |  .-'  `)
+'--'   '--' `---' `--'   `--' `---'      `---' `--'       `-----'--' `----'  `----'`----'  `--'  `----'
+");
 
-        // If the user doesn't enter a name, default to "Hero"
-        if (string.IsNullOrWhiteSpace(input1))
+        Console.WriteLine("===========================================================================================================");
+        Console.WriteLine();
+
+        string text = "Welcome, adventurer!\n" +
+                      "Explore the town and its surroundings, accept quests\n" +
+                      "defeat the monsters that threaten the land and earn\n" +
+                      "stronger weapons along the way.";
+
+        foreach (char letter in text)
         {
-            input1 = "Hero";
+            Console.Write(letter);
+            Thread.Sleep(30);
         }
-        else
+
+        Console.WriteLine();
+        Console.WriteLine();
+
+        // Ask for hero's name
+        string input1;
+
+        while (true)
         {
-            input1 = input1.Trim();
+            Console.Write("Enter your Hero's name: ");
+            input1 = Console.ReadLine();
+
+            if (!string.IsNullOrWhiteSpace(input1))
+            {
+                input1 = input1.Trim();
+                break;
+            }
+
+            Console.WriteLine("You must enter a name to start the game.");
         }
 
         // Create a new player with the provided name and starting location
@@ -27,10 +56,12 @@
             World.WeaponByID(World.WEAPON_ID_RUSTY_SWORD)
         );
 
-        Console.WriteLine($"Welcome, {input1}!");
         player.Name = input1;
 
         Console.WriteLine();
+        Console.WriteLine($"Welcome, {player.Name}!");
+        Console.WriteLine();
+
         Console.WriteLine(
             $"Your name is {player.Name}. You live in a town called Riverbend.\n" +
             "You always dreamed to be a hero. And now when you heard that your town is being terrorized by big spiders.\n" +
