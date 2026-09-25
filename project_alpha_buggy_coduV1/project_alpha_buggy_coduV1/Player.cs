@@ -15,4 +15,22 @@ public class Player
         CurrentWeapon = currentWeapon;
         CurrentLocation = currentLocation;
     }
+
+    // Move the player to a new location, with special handling for the bridge location
+    public void MoveTo(Location newLocation)
+    {
+        if (newLocation.ID == World.LOCATION_ID_BRIDGE && CompletedQuests.Count < 2)
+        {
+            Console.WriteLine("\nThe guard stops you.");
+            Console.WriteLine("You cannot cross the bridge yet.");
+            Console.WriteLine("Come back after you complete 2 quests for the town you low life peasant!");
+            return;
+        }
+
+        if (newLocation.ID == World.LOCATION_ID_BRIDGE && CompletedQuests.Count == 2)
+        {
+            Console.WriteLine("\nGuard: \"I see you've helped the town. You may pass.\"");
+        }
+        CurrentLocation = newLocation;
+    }
 }

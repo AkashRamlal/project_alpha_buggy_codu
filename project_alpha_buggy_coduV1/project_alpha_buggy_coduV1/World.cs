@@ -53,13 +53,13 @@ public static class World
 
     public static void PopulateMonsters()
     {
-        Monster rat = new Monster(MONSTER_ID_RAT, "rat", 1, 3, 3);
+        Monster rat = new Monster(MONSTER_ID_RAT, "rat", 2, 12, 12);
 
 
-        Monster snake = new Monster(MONSTER_ID_SNAKE, "snake", 10, 7, 7);
+        Monster snake = new Monster(MONSTER_ID_SNAKE, "snake", 4, 25, 25);
 
 
-        Monster giantSpider = new Monster(MONSTER_ID_GIANT_SPIDER, "giant spider", 3, 10, 10);
+        Monster giantSpider = new Monster(MONSTER_ID_GIANT_SPIDER, "giant spider", 6, 40, 40);
 
 
         Monsters.Add(rat);
@@ -105,8 +105,13 @@ public static class World
     public static void PopulateLocations()
     {
         // Create each location
-        Location home = new Location(LOCATION_ID_HOME, "Home", "Your house. You really need to clean up the place.", null, null);
-
+        Location home = new Location(
+            LOCATION_ID_HOME,
+            "Home",
+            "You really need to clean up the place.",
+            null,
+            null
+        );
         Location townSquare = new Location(LOCATION_ID_TOWN_SQUARE, "Town square", "You see a fountain.", null, null);
 
         Location alchemistHut = new Location(LOCATION_ID_ALCHEMIST_HUT, "Alchemist's hut", "There are many strange plants on the shelves.", null, null);
@@ -121,7 +126,7 @@ public static class World
         Location farmersField = new Location(LOCATION_ID_FARM_FIELD, "Farmer's field", "You see rows of vegetables growing here.", null, null);
         farmersField.MonsterLivingHere = MonsterByID(MONSTER_ID_SNAKE);
 
-        Location guardPost = new Location(LOCATION_ID_GUARD_POST, "Guard post", "There is a large, tough-looking guard here.", null, null);
+        Location guardPost = new Location(LOCATION_ID_GUARD_POST, "Guard post", "", null, null);
 
         Location bridge = new Location(LOCATION_ID_BRIDGE, "Bridge", "A stone bridge crosses a wide river.", null, null);
         bridge.QuestAvailableHere = QuestByID(QUEST_ID_COLLECT_SPIDER_SILK);

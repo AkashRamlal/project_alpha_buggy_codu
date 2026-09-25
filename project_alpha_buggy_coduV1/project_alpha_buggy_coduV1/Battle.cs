@@ -16,28 +16,35 @@ public static class Battle
                 $"({monstersDefeated + 1}/3)"
             );
 
-            Console.WriteLine("Press ENTER to fight or E to escape.");
-
-            string input = Console.ReadLine()!.Trim().ToLower();
-
-            // Escape from battle
-            if (input == "e")
-            {
-                Console.WriteLine("You escaped from the battle!");
-                return false;
-            }
-
-            // Only ENTER starts the fight
-            if (input != "")
-            {
-                Console.WriteLine("Invalid input.");
-                continue;
-            }
-
             // Fight this monster
             while (player.CurrentHitPoints > 0 &&
                    monster.CurrentHitPoints > 0)
             {
+                Console.WriteLine();
+                Console.WriteLine(
+                    "Press ENTER to attack or E to escape."
+                );
+
+                ConsoleKey key = Console.ReadKey(true).Key;
+
+                // Escape from battle
+                if (key == ConsoleKey.E)
+                {
+                    Console.WriteLine(
+                        "You escaped from the battle!"
+                    );
+
+                    return false;
+                }
+
+                // Only ENTER attacks
+                if (key != ConsoleKey.Enter)
+                {
+                    Console.WriteLine("Invalid input.");
+                    continue;
+                }
+
+                // Player attacks
                 int playerDamage =
                     World.RandomGenerator.Next(
                         1,
@@ -67,6 +74,7 @@ public static class Battle
                     break;
                 }
 
+                // Monster attacks
                 int monsterDamage =
                     World.RandomGenerator.Next(
                         1,
@@ -74,6 +82,12 @@ public static class Battle
                     );
 
                 player.CurrentHitPoints -= monsterDamage;
+
+                // Prevent health from going below 0
+                if (player.CurrentHitPoints < 0)
+                {
+                    player.CurrentHitPoints = 0;
+                }
 
                 Console.WriteLine(
                     $"The {monster.Name} hits you " +
@@ -89,8 +103,11 @@ public static class Battle
                 // Player died
                 if (player.CurrentHitPoints <= 0)
                 {
+                    Console.WriteLine();
                     Console.WriteLine("You died!");
-                    return false;
+                    Console.WriteLine("GAME OVER");
+
+                    Environment.Exit(0);
                 }
             }
 
@@ -104,12 +121,6 @@ public static class Battle
 
                 return true;
             }
-
-            Console.WriteLine();
-            Console.WriteLine(
-                "Press ENTER to fight the next monster " +
-                "or E to escape."
-            );
         }
 
         return false;

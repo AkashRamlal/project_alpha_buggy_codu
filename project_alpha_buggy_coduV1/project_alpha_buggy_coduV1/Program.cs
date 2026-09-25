@@ -3,11 +3,52 @@
     public static void Main()
     {
         bool gameIsRunning = true;
-        Location startingLocation = World.LocationByID(World.LOCATION_ID_HOME);
-        Console.Clear();
-        Console.WriteLine("Enter your Hero's name:");
-        string  input1 = Console.ReadLine() ?? "Hero";
+        Location startingLocation = World.Locations[0];
 
+        //Welcome screen code here pls :D
+        Console.WriteLine(@"
+,--.   ,--.              ,--.   ,--.            ,---.     ,-----.                          ,--.
+|  |   |  | ,---. ,--.--.|  | ,-|  |     ,---. /  .-'    '  .-.  '  ,--.,--. ,---.  ,---.,-'  '-. ,---.
+|  |.'.|  || .-. ||  .--'|  |' .-. |    | .-. ||  `-,    |  | |  |  |  ||  || .-. :(  .-''-.  .-'(  .-'
+|   ,'.   |' '-' '|  |   |  |\ `-' |    ' '-' '|  .-'    '  '-'  '-.'  ''  '\   --..-'  `) |  |  .-'  `)
+'--'   '--' `---' `--'   `--' `---'      `---' `--'       `-----'--' `----'  `----'`----'  `--'  `----'
+");
+
+        Console.WriteLine("===========================================================================================================");
+        Console.WriteLine();
+
+        string text = "Welcome, adventurer!\n" +
+                      "Explore the town and its surroundings, accept quests\n" +
+                      "defeat the monsters that threaten the land and earn\n" +
+                      "stronger weapons along the way.";
+
+        foreach (char letter in text)
+        {
+            Console.Write(letter);
+            Thread.Sleep(30);
+        }
+
+        Console.WriteLine();
+        Console.WriteLine();
+
+        // Ask for hero's name
+        string input1;
+
+        while (true)
+        {
+            Console.Write("Enter your Hero's name: ");
+            input1 = Console.ReadLine();
+
+            if (!string.IsNullOrWhiteSpace(input1))
+            {
+                input1 = input1.Trim();
+                break;
+            }
+
+            Console.WriteLine("You must enter a name to start the game.");
+        }
+
+        // Create a new player with the provided name and starting location
         Player player = new Player(
             200,
             200,
@@ -19,6 +60,19 @@
         Console.WriteLine($"Welcome, {input1}!");
         player.Name = input1;
 
+        Console.WriteLine();
+        Console.WriteLine($"Welcome, {player.Name}!");
+        Console.WriteLine();
+
+        Console.WriteLine(
+            $"Your name is {player.Name}. You live in a town called Riverbend.\n" +
+            "You always dreamed to be a hero. And now when you heard that your town is being terrorized by big spiders.\n" +
+            "You decided to do all you can to help your town.\n" +
+            "In a chest in your home there is a rusty sword that once your father fought with.\n" +
+            "You take it and from now on you swear to protect the people of your town."
+        );
+        Console.WriteLine();
+
         while (gameIsRunning)
         {
             Tuple<String, Object> actionToPerform = player.CurrentLocation.Main(player);
@@ -27,7 +81,7 @@
             switch (actionToPerform.Item1)
             {
                 case "Travel":
-                    player.CurrentLocation = (Location)actionToPerform.Item2;
+                    player.MoveTo((Location)actionToPerform.Item2);
                     break;
 
                 case "OpenInventory":
@@ -85,6 +139,7 @@
 
                         string input = Console.ReadLine();
 
+                        // Check if the player accepts the quest
                         if (input.ToLower() == "y")
                         {
                             player.CurrentQuest = quest;
@@ -98,7 +153,19 @@
                         }
                         else
                         {
-                            Console.WriteLine("You have declined the quest.");
+                            Console.WriteLine("You are about to abort the Quest are you really not man enough to take it?");
+                            Console.WriteLine("yes / no");
+                            string choice_2 = Console.ReadLine().ToLower();
+
+                            if (choice_2 == "yes" || choice_2 == "y")
+                            {
+                                player.CurrentQuest = quest;
+                                Console.WriteLine($"Thats what we like to see you Quest start now. {player.CurrentQuest.Name}");
+                            }
+                            else
+                            {
+                                Console.WriteLine("You canceled the Quest chicken");
+                            }
                         }
                     }
                     else
