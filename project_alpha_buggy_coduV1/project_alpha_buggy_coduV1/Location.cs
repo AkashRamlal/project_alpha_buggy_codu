@@ -16,6 +16,8 @@ public class Location
     public Tuple<String, Object> Main(Player player)
     {
         //Write locationname, description, health, questprog
+        Console.Clear();
+        Console.WriteLine("- - - - - - - - - -");
         Console.WriteLine($"You are at: {Name}");
         Console.WriteLine(Description);
         Console.WriteLine($"Your health is {player.CurrentHitPoints}/{player.MaximumHitPoints}");

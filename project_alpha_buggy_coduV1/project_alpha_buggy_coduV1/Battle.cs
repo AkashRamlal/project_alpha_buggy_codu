@@ -6,6 +6,7 @@ public static class Battle
 
         while (monstersDefeated < 3 && player.CurrentHitPoints > 0)
         {
+            Console.Clear();
             // Reset monster health for the next fight
             monster.CurrentHitPoints = monster.MaximumHitPoints;
 
