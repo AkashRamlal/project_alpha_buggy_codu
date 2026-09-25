@@ -3,8 +3,8 @@
     public static void Main()
     {
         bool gameIsRunning = true;
-        Location startingLocation = World.Locations[0];
-
+        Location startingLocation = World.LocationByID(World.LOCATION_ID_HOME);
+        Console.Clear();
         Console.WriteLine("Enter your Hero's name:");
         string  input1 = Console.ReadLine() ?? "Hero";
 
@@ -14,7 +14,7 @@
             startingLocation,
             World.WeaponByID(World.WEAPON_ID_RUSTY_SWORD)
         );
-
+        Inventory inventory = new Inventory([World.WeaponByID(World.WEAPON_ID_RUSTY_SWORD)]);
         input1 = input1?.Trim() ?? "Hero";
         Console.WriteLine($"Welcome, {input1}!");
         player.Name = input1;
@@ -31,6 +31,7 @@
                     break;
 
                 case "OpenInventory":
+                inventory.InvMenu(player);
                     break;
 
                 case "EnterBattle":
@@ -50,9 +51,18 @@
 
                         if (completedQuest.Reward != null)
                         {
-                            player.CurrentWeapon = completedQuest.Reward;
+                            inventory.AddWp(completedQuest.Reward);
                             Console.WriteLine($"You received a reward: {completedQuest.Reward.Name} ({completedQuest.Reward.MaximumDamage} max damage)!");
-                            Console.WriteLine($"You have equipped the {completedQuest.Reward.Name}.");
+                            Console.WriteLine("Do you want to equip it? Y/N");
+                            string input = Console.ReadLine()!.ToLower();
+                            if (input == "y")
+                            {
+                                player.CurrentWeapon = completedQuest.Reward;
+                                Console.WriteLine($"You have equipped the {completedQuest.Reward.Name}.");
+                            } else
+                            {
+                                Console.WriteLine($"The {completedQuest.Reward.Name} was moved to your inventory.");
+                            }
                         }
                     }
 

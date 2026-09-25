@@ -18,10 +18,13 @@ public class Location
     public Tuple<String, Object> Main(Player player)
     {
         //Write locationname, description, health, questprog
+        Console.Clear();
+        Console.WriteLine("- - - - - - - - - -");
         Console.WriteLine($"You are at: {Name}");
         Console.WriteLine(Description);
         Console.WriteLine($"Your health is {player.CurrentHitPoints}/{player.MaximumHitPoints}");
         Console.WriteLine("QuestProgPlaceholder");
+        Console.WriteLine("- - - - - - - - - -");
         //Collect all valid options for the current situation: take quest, fight, move, open inventory
         List<Tuple<String, int>> options = [];
         if (QuestAvailableHere != null)
