@@ -5,6 +5,15 @@
         bool gameIsRunning = true;
         Location startingLocation = World.Locations[0];
 
+        List<(string Name, string[] Contributions)> team = new()
+        {
+            ("Dalal", new[] { "Welcome screen", "Credits", "Rewards" }),
+            ("Akash", new[] { "Battle a monster", "Battle info" }),
+            ("Vivesh", new[] { "Quest gate", "Start a quest" }),
+            ("Sem", new[] { "Move Location", "Inventory management", "Menu fine tunen" })
+        };
+
+
         //Welcome screen code here pls :D
         Console.WriteLine(@"
 ,--.   ,--.              ,--.   ,--.            ,---.     ,-----.                          ,--.
@@ -117,6 +126,41 @@
                             {
                                 Console.WriteLine($"The {completedQuest.Reward.Name} was moved to your inventory.");
                             }
+                        }
+
+
+                        if (completedQuest.ID == World.QUEST_ID_COLLECT_SPIDER_SILK)
+                        {
+                            Console.WriteLine();
+                            Console.WriteLine("Press any key to continue...");
+                            Console.ReadKey(true);
+
+                            Console.Clear();
+
+                            Console.WriteLine("-------------- CREDITS --------------");
+                            Console.WriteLine();
+                            Thread.Sleep(1000);
+
+                            foreach (var teamMember in team)
+                            {
+                                Console.WriteLine(teamMember.Name);
+
+                                foreach (string contribution in teamMember.Contributions)
+                                {
+                                    Console.WriteLine($"    - {contribution}");
+                                    Thread.Sleep(400);
+                                }
+
+                                Console.WriteLine();
+                                Thread.Sleep(800);
+                            }
+
+                            Console.WriteLine("-------------------------------------");
+                            Console.WriteLine();
+                            Console.WriteLine("Press any key to exit...");
+                            Console.ReadKey(true);
+
+                            gameIsRunning = false;
                         }
                     }
 
